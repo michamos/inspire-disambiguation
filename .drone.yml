@@ -9,7 +9,7 @@ steps:
       password:
         from_secret: docker-password
       repo: 'inspirehep/disambiguation'
-      context: 'dir:////drone/src/backend'
+      context: 'dir:////drone/src'
       tags:
         - '${DRONE_COMMIT_SHA}'
 
