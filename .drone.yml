@@ -24,10 +24,10 @@ steps:
   - name: flake8
     image: 'inspirehep/disambiguation:${DRONE_COMMIT_SHA}'
     commands:
-      - cd /opt/disambiguation/tests
+      - cd /opt/disambiguation
       - poetry run flake8
   - name: pytest
     image: 'inspirehep/disambiguation:${DRONE_COMMIT_SHA}'
     commands:
-      - cd /opt/disambiguation/tests
-      - poetry run py.test
+      - cd /opt/disambiguation
+      - poetry run py.test tests
