@@ -8,9 +8,11 @@ steps:
         from_secret: docker-username
       DOCKER_PASSWORD:
         from_secret: docker-password
+      BUILDAH_STARTED_IN_USERNS: ''
+      BUILDAH_ISOLATION: 'chroot'
     commands:
       - 'cd /drone/src'
-      - 'buildah bud --isolation chroot -t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .'
+      - 'buildah bud-t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .'
       - 'buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:{DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:{DRONE_COMMIT_SHA}'
 
 ---
