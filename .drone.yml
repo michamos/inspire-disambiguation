@@ -2,7 +2,7 @@ kind: pipeline
 name: build
 steps:
   - name: buildah
-    image: quay.io/buildah/stable:v1.10.0
+    image: quay.io/buildah/stable:v1.11.2
     environment:
       DOCKER_USERNAME:
         from_secret: docker-username
