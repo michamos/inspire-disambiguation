@@ -6,7 +6,7 @@ steps:
     environment:
       DOCKER_USERNAME:
         from_secret: docker-username
-      DOCKER_PASSWORD
+      DOCKER_PASSWORD:
         from_secret: docker-password
     commands:
       - cd /drone/src
