@@ -2,7 +2,7 @@ kind: pipeline
 name: build
 steps:
   - name: buildah
-    image: buildah/buildah
+    image: quay.io/buildah/stable:v1.10.0
     environment:
       DOCKER_USERNAME:
         from_secret: docker-username
@@ -10,7 +10,7 @@ steps:
         from_secret: docker-password
     commands:
       - 'cd /drone/src'
-      - 'buildah bud -t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .'
+      - 'buildah bud --isolation chroot -t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .'
       - 'buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:{DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:{DRONE_COMMIT_SHA}'
 
 ---
