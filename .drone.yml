@@ -1,18 +1,17 @@
 kind: pipeline
 name: build
 steps:
-  - name: kaniko
-    image: banzaicloud/drone-kaniko
-    settings:
-      username:
+  - name: buildah
+    image: buildah/buildah
+    environment:
+      DOCKER_USERNAME:
         from_secret: docker-username
-      password:
+      DOCKER_PASSWORD
         from_secret: docker-password
-      repo: 'inspirehep/disambiguation'
-      context: 'dir:////drone/src'
-      cache: false
-      tags:
-        - '${DRONE_COMMIT_SHA}'
+    commands:
+      - cd /drone/src
+      - buildah bud -t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .
+      - buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:{DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:{DRONE_COMMIT_SHA}
 
 ---
 kind: pipeline
