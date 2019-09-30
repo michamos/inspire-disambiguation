@@ -9,9 +9,9 @@ steps:
       DOCKER_PASSWORD:
         from_secret: docker-password
     commands:
-      - cd /drone/src
-      - buildah bud -t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .
-      - buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:{DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:{DRONE_COMMIT_SHA}
+      - 'cd /drone/src'
+      - 'buildah bud -t inspirehep/disambiguation:{DRONE_COMMIT_SHA} .'
+      - 'buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:{DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:{DRONE_COMMIT_SHA}'
 
 ---
 kind: pipeline
