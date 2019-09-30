@@ -13,7 +13,7 @@ steps:
     commands:
       - 'cd /drone/src'
       - 'buildah bud --storage-driver=vfs -t inspirehep/disambiguation:${DRONE_COMMIT_SHA} .'
-      - 'buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:{DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:{DRONE_COMMIT_SHA}'
+      - 'buildah push --creds ${DOCKER_USERNAME}:${DOCKER_PASSWORD} inspirehep/disambiguation:${DRONE_COMMIT_SHA} docker://inspirehep/disambiguation:${DRONE_COMMIT_SHA}'
 
 ---
 kind: pipeline
